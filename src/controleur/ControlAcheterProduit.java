@@ -1,5 +1,7 @@
 package controleur;
 
+import frontiere.Clavier;
+import personnages.Gaulois;
 import villagegaulois.Village;
 
 public class ControlAcheterProduit {
@@ -15,5 +17,16 @@ public class ControlAcheterProduit {
 		this.controlTrouverEtalVendeur = controlTrouverEtalVendeur;
 	}
 
-	//TODO a completer
+	public String[] rechercherVendeursProduit(String produit) {
+		Gaulois[] vendeursGaulois = village.rechercherVendeursProduit(produit);
+		String[] vendeurs = new String[]{};
+		for (int i = 0; i < vendeursGaulois.length; i++) {
+			vendeurs[i] = vendeursGaulois[i].getNom();
+		}
+		return vendeurs;
+	}
+	
+	public int acheterProduit(String nomVendeur, int quantite) {
+		return 0;
+	}
 }
