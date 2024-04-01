@@ -52,7 +52,7 @@ public class BoundaryPrendreEtal {
 		
 		if (numeroEtal != -1) {
 			System.out
-				.println("Le vendeur " + nomVendeur + " s'est installé à l'étal n°" + (numeroEtal + 1));
+				.println("Le vendeur " + nomVendeur + " s'est installé à l'étal n°" + numeroEtal);
 		}
 	}
 }
