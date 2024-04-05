@@ -16,7 +16,7 @@ class ControlVerifierIdentiteTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		Village village = new Village("Village de test", 10, 10);
-		Gaulois obelix = new Gaulois("Obélix", 5);
+		Gaulois obelix = new Gaulois("ObÃ©lix", 5);
 		village.ajouterHabitant(obelix);
 		Chef chef = new Chef("chef", 10, village);
 		village.setChef(chef);
@@ -30,8 +30,8 @@ class ControlVerifierIdentiteTest {
 
 	@Test
 	void testVerifierIdentite() {
-		assertTrue(control.verifierIdentite("Obélix"));
 		assertTrue(control.verifierIdentite("chef"));
+		assertTrue(control.verifierIdentite("ObÃ©lix"));
 		assertFalse(control.verifierIdentite("Panoramix"));
 	}
 

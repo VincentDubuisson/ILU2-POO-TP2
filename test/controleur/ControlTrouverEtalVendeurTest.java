@@ -9,9 +9,10 @@ import personnages.Chef;
 import personnages.Gaulois;
 import villagegaulois.Village;
 
-class ControlPrendreEtalTest {
+class ControlTrouverEtalVendeurTest {
 	
-	ControlPrendreEtal control;
+	ControlTrouverEtalVendeur  control;
+	ControlPrendreEtal controlPrendreEtal;
 	ControlVerifierIdentite controlVerifierIdentite;
 
 	@BeforeEach
@@ -23,32 +24,22 @@ class ControlPrendreEtalTest {
 		village.ajouterHabitant(asterix);
 		Chef chef = new Chef("chef", 10, village);
 		village.setChef(chef);
+		
 		controlVerifierIdentite = new ControlVerifierIdentite(village);
-		control = new ControlPrendreEtal(controlVerifierIdentite, village);
+		controlPrendreEtal = new ControlPrendreEtal(controlVerifierIdentite, village);
+		control = new ControlTrouverEtalVendeur(village);
 	}
 
 	@Test
-	void testControlPrendreEtal() {
+	void testControlTrouverEtalVendeur() {
 		assertNotNull(control);
 	}
 
 	@Test
-	void testResteEtals() {
-		control.prendreEtal("Obélix", "fleurs", 10);
-		assertFalse(control.resteEtals());
-	}
-
-	@Test
-	void testPrendreEtal() {
-		assertEquals(1, control.prendreEtal("Obélix", "fleurs", 10));
-		//assertEquals(-1, control.prendreEtal("chef", "pierre", 20));
-	}
-
-	@Test
-	void testVerifierIdentite() {
-		assertTrue(control.verifierIdentite("chef"));
-		assertTrue(control.verifierIdentite("Obélix"));
-		assertFalse(control.verifierIdentite("Panoramix"));
+	void testTrouverEtalVendeur() {
+		assertEquals(null, control.trouverEtalVendeur("Obélix"));
+		assertEquals(null, control.trouverEtalVendeur(""));
+		controlPrendreEtal.prendreEtal("Astérix", "fleurs", 10);
 	}
 
 }

@@ -1,10 +1,13 @@
 package controleur;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import personnages.Chef;
+import personnages.Druide;
 import personnages.Gaulois;
 import villagegaulois.Etal;
 import villagegaulois.Village;
@@ -12,11 +15,18 @@ import villagegaulois.Village;
 class ControlAfficherVillageTest {
 	
 	ControlAfficherVillage control;
-	ControlEmmenager controlEmmenager;
 
 	@BeforeEach
 	void setUp() throws Exception {
 		Village village = new Village("Village de test", 10, 10);
+		Chef chef = new Chef("Abra", 10, village);
+		village.setChef(chef);
+		Gaulois obelix = new Gaulois("Obélix", 5);
+		Gaulois asterix = new Gaulois("Astérix", 3);
+		Druide pano = new Druide("Pano", 5, 8, 10);
+		village.ajouterHabitant(obelix);
+		village.ajouterHabitant(asterix);
+		village.ajouterHabitant(pano);
 		control = new ControlAfficherVillage(village);
 	}
 
@@ -27,9 +37,9 @@ class ControlAfficherVillageTest {
 
 	@Test
 	void testDonnerNomsVillageois() {
-		/*controlEmmenager.ajouterGaulois("Asterix", 2);
-		controlEmmenager.ajouterGaulois("Ob�lix", 3);*/
-		//assertarrayequals
+		String[] expected = {"Abra", "Obélix", "Astérix", "le druide Pano"};
+		String[] actual = control.donnerNomsVillageois();
+		assertArrayEquals(expected, actual);
 	}
 
 	@Test
@@ -40,8 +50,7 @@ class ControlAfficherVillageTest {
 
 	@Test
 	void testDonnerNbEtals() {
-		//assertEquals(0, control.donnerNbEtals());
-		//assertFalse(control.donnerNbEtals() == 5);
+		assertEquals(10, control.donnerNbEtals());
 	}
 
 }
